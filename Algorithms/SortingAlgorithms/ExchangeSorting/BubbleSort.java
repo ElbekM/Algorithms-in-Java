@@ -15,12 +15,12 @@ public class BubbleSort extends SortAlgorithm {
 	public int[] sort(int[] array) {
 		for (int end = array.length - 1; end > 0; end--) {
 			for (int j = 0; j < end; ++j) {
-        		if (array[j] > array[j + 1]) {
-        			int tmp = array[j];
-        			array[j] = array[j + 1];
-        			array[j + 1] = tmp;
-        		}
-        	}
+	        	if (array[j] > array[j + 1]) {
+	        		int tmp = array[j];
+	        		array[j] = array[j + 1];
+	        		array[j + 1] = tmp;
+	        	}
+			}
 		}
 		return array;
 	}
