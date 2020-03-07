@@ -1,5 +1,11 @@
 package Algorithms.DataStructures.Stack;
 
+/**
+ * 
+ * @author Elbek M
+ *
+ */
+
 public class StackArray {
 
 	private int maxSize;
@@ -8,8 +14,8 @@ public class StackArray {
 	
 	public StackArray(int maxSize) {
 		this.maxSize = maxSize;
-		this.stackArray = new int[maxSize];
-		this.top = -1;
+		stackArray = new int[maxSize];
+		top = -1;
 	}
 	
 	public void push(int element) {
@@ -50,23 +56,20 @@ public class StackArray {
 	
 	//Driver program
 	public static void main(String[] args) {
-		StackArray stack = new StackArray(10);
+		StackArray stack = new StackArray(5);
 		stack.push(20);
 		stack.push(40);
 		stack.push(50);
 		stack.push(60);
 		stack.push(60);
 		stack.push(60);
-		stack.push(60);
-		stack.push(60);
-		stack.push(60);
-		stack.push(60);
-		stack.push(60);
+		
 		
 		while (!stack.isEmpty()) {
 			int value = stack.pop();
 			System.out.println(value);
 		}
+		stack.peek();
 		stack.pop();
 		System.out.println(stack.isEmpty());
 	}
