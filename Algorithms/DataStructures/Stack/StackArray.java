@@ -53,6 +53,18 @@ public class StackArray {
 		return (top == maxSize - 1);
 	}
 	
+	public void print() {
+		if (isEmpty()) {
+			System.out.println("Stack is empty");
+		} else {
+			while (!isEmpty()) {
+				int value = pop();
+				System.out.print(value + " ");
+			}
+			System.out.println();
+		}
+	}
+	
 	
 	//Driver program
 	public static void main(String[] args) {
@@ -61,16 +73,10 @@ public class StackArray {
 		stack.push(40);
 		stack.push(50);
 		stack.push(60);
-		stack.push(60);
-		stack.push(60);
+		stack.push(70);
+		//stack.push(60);
 		
-		
-		while (!stack.isEmpty()) {
-			int value = stack.pop();
-			System.out.println(value);
-		}
-		stack.peek();
-		stack.pop();
+		stack.print();
 		System.out.println(stack.isEmpty());
 	}
 }

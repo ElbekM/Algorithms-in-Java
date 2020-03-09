@@ -47,6 +47,6 @@ public class ShakeSort extends SortAlgorithm {
 		System.out.println(Arrays.toString(array));
 			
 		ShakeSort randomArray = new ShakeSort();
-		randomArray.displayTime(randomArray.generateRandomNumbers(50000, 2000));
+		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));
 	}	
 }

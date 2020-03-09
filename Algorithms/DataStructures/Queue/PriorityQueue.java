@@ -71,6 +71,18 @@ public class PriorityQueue {
 		return nElement;
 	}
 	
+	public void print() {
+		if (isEmpty()) {
+			System.out.println("Queue is empty");
+		} else {
+			while (!isEmpty()) {
+				int value = remove();
+				System.out.print(value + " ");
+			}
+			System.out.println();
+		}
+	}
+	
 	
 	//Driver program
 	public static void main(String[] args) {
@@ -80,19 +92,13 @@ public class PriorityQueue {
 		queue.insert(3);
 		queue.insert(4);
 		queue.insert(6);
-		queue.insert(7);
-		queue.insert(8);
-		queue.insert(8);
+
 		System.out.println(queue.remove());
 			
-		while (!queue.isEmpty()) {
-			int value = queue.remove();
-			System.out.println(value);
-		}
+		queue.print();
+		
 		System.out.println("is empty " + queue.isEmpty());
 		System.out.println("is full  " + queue.isFull());
-		System.out.println(queue.size());
-		System.out.println(queue.peek());
+		System.out.println("Size " + queue.size());
 	}
-
 }

@@ -64,6 +64,18 @@ public class QueueArray {
 		return nElements;
 	}
 	
+	public void print() {
+		if (isEmpty()) {
+			System.out.println("Queue is empty");
+		} else {
+			while (!isEmpty()) {
+				int value = remove();
+				System.out.print(value + " ");
+			}
+			System.out.println();
+		}
+	}
+	
 	
 	//Driver program
 	public static void main(String[] args) {
@@ -77,15 +89,12 @@ public class QueueArray {
 		queue.insert(7);
 		queue.insert(8);
 		queue.insert(8);
-		queue.insert(8);
+		//queue.insert(8);
+		
+		queue.print();
 			
-		while (!queue.isEmpty()) {
-			int value = queue.remove();
-			System.out.println(value);
-		}
 		System.out.println("is empty " + queue.isEmpty());
 		System.out.println("is full  " + queue.isFull());
-		System.out.println(queue.size());
-		System.out.println(queue.peek());
+		System.out.println("Size " + queue.size());
 	}
 }

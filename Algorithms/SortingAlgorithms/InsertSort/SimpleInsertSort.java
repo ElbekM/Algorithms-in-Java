@@ -49,6 +49,6 @@ public class SimpleInsertSort extends SortAlgorithm {
 		System.out.println(Arrays.toString(array));
 		
 		SimpleInsertSort randomArray = new SimpleInsertSort();
-		randomArray.displayTime(randomArray.generateRandomNumbers(50000, 2000));
+		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));
 	}
 }
