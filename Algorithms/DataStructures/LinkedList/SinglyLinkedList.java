@@ -5,7 +5,7 @@ package Algorithms.DataStructures.LinkedList;
  * @author Elbek M
  *
  */
-//TODO add exeptions
+//TODO add exeptions and unit tests
 public class SinglyLinkedList {
 
 	private Link first;

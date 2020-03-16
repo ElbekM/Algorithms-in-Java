@@ -38,6 +38,6 @@ public class SimpleSelectionSort extends SortAlgorithm {
 		
 		SimpleSelectionSort randomArray = new SimpleSelectionSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));
-
+		
 	}
 }

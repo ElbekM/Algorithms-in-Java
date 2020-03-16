@@ -5,7 +5,7 @@ package Algorithms.DataStructures.LinkedList;
  * @author Elbek M
  *
  */
-
+//TODO add exeptions and unit tests
 public class DoublyLinkedList {
 	
 	private Link first;
@@ -13,18 +13,19 @@ public class DoublyLinkedList {
 	private int size;
 	
 	public void add(int element) {
-		Link link = new Link(element);
+		Link newlink = new Link(element);
 		if (isEmpty()) {
-			first = link;
+			first = newlink;
 		} else {
-			last.setNext(link);
-			link.setPrevious(last); //pizdec
+			last.setNext(newlink);
+			newlink.setPrevious(last);
 		}
-		last = link;
+		last = newlink;
 		size++;
 	}
 	
 	public int remove() {
+
 		Link temp = last;
 		if (first.getNext() == null) {
 			first = null;
@@ -36,6 +37,7 @@ public class DoublyLinkedList {
 		return temp.getValue();
 	}
 	
+	//TODO fix and optimize
 	public void insert(int element, int index) {
 		Link newLink = new Link(element);
 		Link current = find(index);
@@ -72,6 +74,29 @@ public class DoublyLinkedList {
 		size--;
 		return current.getValue();
 	}
+	
+	public Link deleteElement(int element) {
+		Link current = first;
+	
+		while (current.getValue() != element) {
+            if (current != last) {
+                current = current.getNext();
+            } else {
+                throw new RuntimeException("The element to be deleted does not exist!");
+            }
+        }
+
+		if (current == first) {
+			delete(0);
+		} else if (current == last) {
+			remove();
+		} else {
+			current.getPrevious().setNext(current.getNext());
+			current.getNext().setPrevious(current.getPrevious());
+		}
+		size--;
+		return current;
+	}
 
 	public int get(int index) {
 		Link current = find(index);
@@ -86,7 +111,7 @@ public class DoublyLinkedList {
 			}
 			current = current.getNext();
 		}
-		return null;
+		throw new IndexOutOfBoundsException();
 	}
 	
 	public boolean isEmpty() {
@@ -125,6 +150,7 @@ public class DoublyLinkedList {
 		//list.delete(0);
 		
 		list.insert(150, 0);
+		//list.deleteElement(150);
 		list.display();
 	}
 }
