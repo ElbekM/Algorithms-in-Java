@@ -1,133 +1,151 @@
 package Algorithms.MathAlgorithms;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.EmptyStackException;
+import java.util.Scanner;
 import java.util.Stack;
 
+import Algorithms.MathAlgorithms.exception.SuperCalculatorException;
+
+/**
+ * 
+ * @author Elbek M
+ */
+
+/**
+ * Calculates a string arithmetic expression in infix
+ * notation using the reverse Polish notation algorithm.
+ */
 public class StringCalculator {
 
-	private String expression;
+    private String expression;
+    private static final int SCALE = 16;
+    private static final String FORMAT_ERROR = "Incorrect format";
 
-	public StringCalculator(String expression) {
-		this.expression = expression;
-	}
+    StringCalculator(String expression) {
+        this.expression = expression;
+    }
 
-	public Object calculate() {
-		double value = calculateRPN(expressionToRPN(expression));
-		// TODO value / delta where delta is size of window
-		if (value % 1 == 0) {
-			return (int) value;
-		} else {
-			return value;
-		}
+    /**
+     * Returns the result of calculating the string arithmetic
+     * expression in infix notation.
+     */
+    String calculate() throws SuperCalculatorException {
+        return calculateRPN(expressionToRPN(expression));
+    }
 
-	}
+    private String expressionToRPN(String expression) {
+        boolean unary;
+        int numberOfBrackets = 0;
+        StringBuilder resultRpn = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
 
-	private String expressionToRPN(String expression) {
-		String resultStr = "";
-		Stack<Character> stack = new Stack<>();
-		int priority;
-		for (int i = 0; i < expression.length(); ++i) {
-			//Unary chek
-			if ((expression.charAt(i) == '-' && (i == 0)) || 
-					((expression.charAt(i) == '-') && (expression.charAt(i - 1) != ')') &&
-					(expression.charAt(i - 1) < '0' || expression.charAt(i - 1) > '9'))) {
-				priority = 0;
-			} else {
-				priority = getPriority(expression.charAt(i));
-			}
-			if (priority == 0) {
-				resultStr += expression.charAt(i);
-			} else if (priority == 1) {
-				stack.push(expression.charAt(i));
-			} else if (priority > 1) {
-				resultStr += " ";
-				while (!stack.empty() && getPriority(stack.peek()) >= priority) {
-					resultStr += stack.pop() + " ";
-				}
-				stack.push(expression.charAt(i));
-			} else if (priority == -1) {
-				//TODO exeption
-				while (getPriority(stack.peek()) != 1) {
-					resultStr += " " + stack.pop();
-				}
-				stack.pop();
-			}
-		}
-		while (!stack.empty()) {
-			resultStr += " " + stack.pop();
-		}
-		return resultStr;
-	}
+        for (int i = 0; i < expression.length(); ++i) {
+            unary = false;
+            char token = expression.charAt(i);
+            if ((token == '-' && (i == 0)) ||
+                    ((token == '-') && (expression.charAt(i - 1) != ')') &&
+                            (expression.charAt(i - 1) < '0' || expression.charAt(i - 1) > '9'))) {
+                unary = true;
+            }
+            if ('(' == token) {
+                stack.push(token);
+                numberOfBrackets++;
+            } else if (')' == token) {
+                numberOfBrackets--;
+                if (numberOfBrackets < 0) {
+                    throw new SuperCalculatorException(FORMAT_ERROR);
+                }
+                while (!('(' == stack.peek())) {
+                    resultRpn.append(" ").append(stack.pop());
+                }
+                stack.pop();
+            } else if (isNumeric(token + "") || token == '.' || unary) {
+                resultRpn.append(token);
+            } else if (getPriority(token) > 0) {
+                resultRpn.append(" ");
+                while (!stack.empty() &&
+                        getPriority(token) <= getPriority(stack.peek())) {
+                    resultRpn.append(stack.pop()).append(" ");
+                }
+                stack.push(token);
+            } else {
+                throw new SuperCalculatorException(FORMAT_ERROR);
+            }
+        }
+        while (!stack.empty()) {
+            resultRpn.append(" ").append(stack.pop());
+        }
+        return resultRpn.toString();
+    }
 
-	private byte getPriority(char operator) {
-		if (operator == '(') {
-			return 1;
-		} else if (operator == ')') {
-			return -1;
-		} else if (operator == '+' || operator == '-') {
-			return 2;
-		} else if (operator == '*' || operator == '/') {
-			return 3;
-		} else {
-			return 0;
-		}
-	}
+    private String calculateRPN(String rpnString) throws SuperCalculatorException {
+        Stack<BigDecimal> stack = new Stack<>();
+        for (String symbol : rpnString.split(" ")) {
+            try {
+                if (!isNumeric(symbol)) {
+                    BigDecimal first = stack.pop();
+                    BigDecimal second = stack.pop();
+                    stack.push(evaluate(first, second, symbol));
+                } else {
+                    stack.push(new BigDecimal(symbol));
+                }
+            } catch (EmptyStackException | NumberFormatException e) {
+                throw new SuperCalculatorException(FORMAT_ERROR);
+            }
+        }
+        if (stack.isEmpty()) {
+            throw new SuperCalculatorException(FORMAT_ERROR);
+        } else {
+            return stack.pop().stripTrailingZeros().toPlainString();
+        }
+    }
 
-	private double calculateRPN(String fakfaka) {
-		String[] expression = fakfaka.split(" ");
-		Stack<Double> stack = new Stack<>();
-		for (int index = 0; index < expression.length; ++index) {
-			if (!isNum(expression[index])) {
-				double num1 = stack.pop();
-				double num2 = stack.pop();
-				stack.push(eval(num1, num2, expression[index]));
-			} else {
-				stack.push(Double.parseDouble(expression[index]));
-			}
-		}
-		if (stack.isEmpty()) {
-			throw new IndexOutOfBoundsException("Failed");
-		} else {
-			return stack.pop();
-		}
-	}
+    private BigDecimal evaluate(BigDecimal first, BigDecimal second, String operator) {
+        switch (operator) {
+            case "+":
+                return first.add(second);
+            case "-":
+                return second.subtract(first);
+            case "*":
+                return first.multiply(second);
+            case "/":
+                if (second.compareTo(BigDecimal.ZERO) == 0) {
+                    throw new SuperCalculatorException("Division by zero");
+                }
+                return second.divide(first, SCALE, RoundingMode.HALF_UP);
+            default:
+                throw new SuperCalculatorException(FORMAT_ERROR);
+        }
+    }
 
-	private double eval(double first, double second, String operator) {
-		switch (operator) {
-		case "+":
-			return first + second;
-		case "-":
-			return second - first;
-		case "*":
-			return first * second;
-		case "/":
-			// TODO equals and exept
-			if (first == 0) {
-				throw new NumberFormatException("Division by zero error");
-				// throw new CalculatorException("Division by zero error");
-			}
-			return second / first;
-		default:
-			// throw new CalculatorException(FORMAT_ERROR);
-			throw new IllegalArgumentException("Unexpected value: " + operator);
-		}
-	}
+    private static int getPriority(char operator) {
+        if (operator == '(' || operator == ')') {
+            return 0;
+        } else if (operator == '+' || operator == '-') {
+            return 1;
+        } else if (operator == '*' || operator == '/') {
+            return 2;
+        }
+        return 3;
+    }
 
-	// TODO fix this method
-	private boolean isNum(String string) {
-		try {
-			Double.parseDouble(string);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
-	}
-
+    private boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?");
+    }
+	
+    
 	// Driver Programm
 	public static void main(String[] args) {
 	
-		String expression = "3";
+		Scanner in = new Scanner(System.in);
+		String expression = in.next();
+        in.close();
+		
 		StringCalculator e = new StringCalculator(expression);
-		String resultExp = String.valueOf(e.calculate());
+		String resultExp = e.calculate();
 		System.out.println(resultExp);
+		
 	}
 }
