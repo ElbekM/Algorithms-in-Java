@@ -74,7 +74,8 @@ public class StackArray {
 		stack.push(50);
 		stack.push(60);
 		stack.push(70);
-		//stack.push(60);
+		stack.pop();
+		stack.pop();
 		
 		stack.print();
 		System.out.println(stack.isEmpty());

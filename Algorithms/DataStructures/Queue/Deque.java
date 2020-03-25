@@ -1,7 +1,5 @@
 package Algorithms.DataStructures.Queue;
 
-import java.util.Arrays;
-
 /**
  * 
  * @author Elbek M
@@ -74,7 +72,6 @@ public class Deque {
 		}
 	}
 	
-	
 	public int peek() {
 		if (isEmpty()) {
 			throw new UnsupportedOperationException("Deque is empty");
@@ -95,8 +92,16 @@ public class Deque {
 		return nElements;
 	}
 	
-	public void display() {
-		System.out.println(Arrays.toString(dequeArray));
+	public void print() {
+		if (isEmpty()) {
+			throw new UnsupportedOperationException("Deque is empty");
+		} else {
+			while (!isEmpty()) {
+				int value = removeLeft();
+				System.out.print(value + " ");
+			}
+			System.out.println();
+		}
 	}
 	
 	
@@ -107,18 +112,11 @@ public class Deque {
 		deque.insertRight(1);
 		deque.insertRight(2);
 		deque.insertRight(3);
-
 		deque.removeLeft();
 		deque.insertLeft(5);
 		deque.insertLeft(6);
-		//deque.insertRight(2);
 			
-		deque.display();
-		System.out.print(deque.removeRight() + " ");
-		System.out.print(deque.removeRight() + " ");
-		System.out.print(deque.removeLeft() + " ");
-		System.out.print(deque.removeLeft() + " ");
-		System.out.println();
+		deque.print();
 
 		System.out.println("is empty " + deque.isEmpty());
 		System.out.println("is full  " + deque.isFull());

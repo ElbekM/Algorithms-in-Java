@@ -89,7 +89,6 @@ public class QueueArray {
 		queue.insert(7);
 		queue.insert(8);
 		queue.insert(8);
-		//queue.insert(8);
 		
 		queue.print();
 			

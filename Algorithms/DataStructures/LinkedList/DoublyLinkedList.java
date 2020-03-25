@@ -25,7 +25,6 @@ public class DoublyLinkedList {
 	}
 	
 	public int remove() {
-
 		Link temp = last;
 		if (first.getNext() == null) {
 			first = null;
@@ -37,7 +36,6 @@ public class DoublyLinkedList {
 		return temp.getValue();
 	}
 	
-	//TODO fix and optimize
 	public void insert(int element, int index) {
 		Link newLink = new Link(element);
 		Link current = find(index);
@@ -46,7 +44,7 @@ public class DoublyLinkedList {
 			first.setPrevious(newLink);
 			first = newLink;
 		}
-		else if (current == last.getNext()) {
+		else if (index == size) {
 			last.setNext(newLink);
 			newLink.setPrevious(last);
 			last = newLink;
@@ -56,9 +54,10 @@ public class DoublyLinkedList {
 			current.getPrevious().setNext(newLink);
 			current.setPrevious(newLink);
 		}
+		
 		size++;
 	}
-	//List is not empty
+
 	public int delete(int index) {
 		Link current = find(index);
 		if (index == 0) {
@@ -84,8 +83,7 @@ public class DoublyLinkedList {
             } else {
                 throw new RuntimeException("The element to be deleted does not exist!");
             }
-        }
-
+		}
 		if (current == first) {
 			delete(0);
 		} else if (current == last) {
@@ -150,6 +148,8 @@ public class DoublyLinkedList {
 		//list.delete(0);
 		
 		list.insert(150, 0);
+		list.insert(55, 2);
+		list.insert(123, list.size);
 		//list.deleteElement(150);
 		list.display();
 	}
