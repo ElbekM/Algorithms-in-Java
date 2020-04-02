@@ -24,7 +24,7 @@ public class SimpleInsertSort extends SortAlgorithm {
 		}
 		return array;
 	}
-	
+
 	public int[] sortWithFor(int[] array) {
 		int index;
 		for (int element = 0; element < array.length; ++element) {
@@ -37,15 +37,15 @@ public class SimpleInsertSort extends SortAlgorithm {
 		return array;
 	}
 	
-	
-	//Driver Programm
+
+	// Driver Programm
 	public static void main(String[] args) {
-		
-		int[] array = {5, 7, 2, 4, 5, 10};
+
+		int[] array = { 5, 7, 2, 4, 5, 10 };
 		SimpleInsertSort simpleInsertSort = new SimpleInsertSort();
 		simpleInsertSort.sort(array);
 		System.out.println(Arrays.toString(array));
-		
+
 		SimpleInsertSort randomArray = new SimpleInsertSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));
 	}
