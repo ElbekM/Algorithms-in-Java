@@ -1,9 +1,14 @@
-package Algorithms.SortingAlgorithms.ExchangeSorting;
+package Algorithms.SortingAlgorithms;
 
 import java.util.Arrays;
 
-import Algorithms.SortingAlgorithms.SortAlgorithm;
-
+/**
+ *  Comb Sortzx
+ * 
+ * 
+ * @author Elbek M
+ *	NOT WORK
+ */
 public class CombSort extends SortAlgorithm {
 	
 	@Override
