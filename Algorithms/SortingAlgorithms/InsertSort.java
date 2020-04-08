@@ -1,14 +1,22 @@
-package Algorithms.SortingAlgorithms.InsertSort;
+package Algorithms.SortingAlgorithms;
 
 import java.util.Arrays;
-import Algorithms.SortingAlgorithms.SortAlgorithm;
 
 /**
+ * Insertion Sort
+ * 
+ * A sort that uses the insertion of elements in to the list to sort the list.
+ * 
+ * Time Complexity: O(N**2)
+ * 
+ * Space Complexity: O(N) total
+ * 
+ * Stable: Yes
  * 
  * @author ElbekM
  */
 
-public class SimpleInsertSort extends SortAlgorithm {
+public class InsertSort extends SortAlgorithm {
 
 	@Override
 	public int[] sort(int[] array) {
@@ -42,11 +50,11 @@ public class SimpleInsertSort extends SortAlgorithm {
 	public static void main(String[] args) {
 
 		int[] array = { 5, 7, 2, 4, 5, 10 };
-		SimpleInsertSort simpleInsertSort = new SimpleInsertSort();
-		simpleInsertSort.sort(array);
+		InsertSort insertSort = new InsertSort();
+		insertSort.sort(array);
 		System.out.println(Arrays.toString(array));
 
-		SimpleInsertSort randomArray = new SimpleInsertSort();
+		InsertSort randomArray = new InsertSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));
 	}
 }
