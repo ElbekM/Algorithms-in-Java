@@ -12,8 +12,6 @@ import java.util.Arrays;
  * Space Complexity: O(1) Auxiliary
  * 
  * Stable: Yes
- * 
- * @author Elbek M
  */
 
 public class ShellSort extends SortAlgorithm {
@@ -45,7 +43,6 @@ public class ShellSort extends SortAlgorithm {
 		return array;
 	}
 
-	
 	// Driver Programm
 	public static void main(String[] args) {
 

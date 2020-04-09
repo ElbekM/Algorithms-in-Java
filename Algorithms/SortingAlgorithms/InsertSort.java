@@ -12,8 +12,6 @@ import java.util.Arrays;
  * Space Complexity: O(N) total
  * 
  * Stable: Yes
- * 
- * @author ElbekM
  */
 
 public class InsertSort extends SortAlgorithm {
@@ -44,7 +42,6 @@ public class InsertSort extends SortAlgorithm {
 		}
 		return array;
 	}
-	
 
 	// Driver Programm
 	public static void main(String[] args) {

@@ -7,13 +7,11 @@ import java.util.Arrays;
  * 
  * A sorting that uses in-place comparison.
  * 
- * Time Complexity:  O(N**2)
+ * Time Complexity: O(N**2)
  * 
  * Space Complexity: O(1) Auxiliary
- * 
+ *  
  * Stable: Yes
- * 
- * @author ElbekM
  */
 
 public class SelectionSort extends SortAlgorithm {
@@ -33,18 +31,16 @@ public class SelectionSort extends SortAlgorithm {
 		}
 		return array;
 	}
-	
-	
-	//Driver Program
+
+	// Driver Program
 	public static void main(String[] args) {
-		
-		int[] array = {5, 7, 2, 4, 5, 10};
+
+		int[] array = { 5, 7, 2, 4, 5, 10 };
 		SelectionSort selectionSort = new SelectionSort();
 		selectionSort.sort(array);
 		System.out.println(Arrays.toString(array));
-		
+
 		SelectionSort randomArray = new SelectionSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));
-		
 	}
 }

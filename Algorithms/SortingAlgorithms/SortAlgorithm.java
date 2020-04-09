@@ -24,6 +24,7 @@ public abstract class SortAlgorithm {
 		Long startTime = Calendar.getInstance().getTime().getTime();
 		sort(array);
 		Long endTime = Calendar.getInstance().getTime().getTime();
-		System.out.println(String.format("Sorting : %s items : %s seconds", array.length, (endTime - startTime) * 0.001));
+		System.out.println(String.format(
+				"Sorting : %s items : %s seconds", array.length, (endTime - startTime) * 0.001));
 	}
 }

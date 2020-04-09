@@ -12,16 +12,14 @@ import java.util.Arrays;
  * Space Complexity: O(1) Auxiliary
  * 
  * Stable: Yes
- * 
- * @author ElbekM
  */
 
-public class ShakeSort extends SortAlgorithm {
+public class CocktailSort extends SortAlgorithm {
 
 	@Override
 	public int[] sort(int[] array) {
 		int left = 0, right = array.length - 1;
-		
+
 		while (left <= right) {
 			for (int i = left; i < right; ++i) {
 				if (array[i] > array[i + 1]) {
@@ -31,7 +29,7 @@ public class ShakeSort extends SortAlgorithm {
 				}
 			}
 			right--;
-			
+
 			for (int j = right; j > left; j--) {
 				if (array[j] < array[j - 1]) {
 					int tmp = array[j];
@@ -43,17 +41,16 @@ public class ShakeSort extends SortAlgorithm {
 		}
 		return array;
 	}
-	
-	
+
 	// Driver Program
 	public static void main(String[] args) {
-			
-		int[] array = {5, 7, 2, 4, 5, 10};
-		ShakeSort shakeSort = new ShakeSort();
+
+		int[] array = { 5, 7, 2, 4, 5, 10 };
+		CocktailSort shakeSort = new CocktailSort();
 		shakeSort.sort(array);
 		System.out.println(Arrays.toString(array));
-			
-		ShakeSort randomArray = new ShakeSort();
+
+		CocktailSort randomArray = new CocktailSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));
-	}	
+	}
 }

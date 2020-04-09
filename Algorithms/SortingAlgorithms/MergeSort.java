@@ -9,11 +9,9 @@ import java.util.Arrays;
  * 
  * Complexity: O(N logN)
  * 
- * Space Complexity: O(N)
+ * Space Complexity: O(N) Auxiliary 
  * 
- * Auxiliary Stable: Yes
- * 
- * @author Elbek M
+ * Stable: Yes
  */
 
 public class MergeSort extends SortAlgorithm {
@@ -47,10 +45,10 @@ public class MergeSort extends SortAlgorithm {
 		}
 		System.arraycopy(sortedArr, 0, array, left, total_len);
 	}
-	
 
 	// Driver Program
 	public static void main(String[] args) {
+
 		int[] array = { 3, 2, 3, 5, 10, 8, -5, 5 };
 		MergeSort mergeSort = new MergeSort();
 		mergeSort.sort(array);

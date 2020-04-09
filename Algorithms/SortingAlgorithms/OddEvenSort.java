@@ -3,8 +3,16 @@ package Algorithms.SortingAlgorithms;
 import java.util.Arrays;
 
 /**
+ * Odd–even Sort
  * 
- * @author ElbekM
+ * Modification of Bubble sort for use on parallel processors with local
+ * interconnections.
+ * 
+ * Complexity: O(N**2)
+ * 
+ * Space Complexity: O(1) Auxiliary 
+ * 
+ * Stable: Yes
  */
 
 public class OddEvenSort extends SortAlgorithm {
@@ -12,7 +20,7 @@ public class OddEvenSort extends SortAlgorithm {
 	@Override
 	public int[] sort(int[] array) {
 		boolean cheker = true;
-		
+
 		while (cheker) {
 			cheker = false;
 			for (int i = 0; i < array.length - 1; i += 2) {
@@ -34,16 +42,15 @@ public class OddEvenSort extends SortAlgorithm {
 		}
 		return array;
 	}
-	
-	
+
 	// Driver Program
 	public static void main(String[] args) {
-		
-		int[] array = {5, 7, 2, 4, 5, 10};
+
+		int[] array = { 5, 7, 2, 4, 5, 10 };
 		OddEvenSort oddEvenSort = new OddEvenSort();
 		oddEvenSort.sort(array);
 		System.out.println(Arrays.toString(array));
-		
+
 		OddEvenSort randomArray = new OddEvenSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(50000, 2000));
 	}

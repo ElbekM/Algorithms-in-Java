@@ -12,8 +12,6 @@ import java.util.Arrays;
  * Space Complexity: O(1) Auxiliary
  * 
  * Stable: Yes
- * 
- * @author ElbekM
  */
 
 public class BubbleSort extends SortAlgorithm {
@@ -31,16 +29,15 @@ public class BubbleSort extends SortAlgorithm {
 		}
 		return array;
 	}
-	
-	
+
 	// Driver Program
 	public static void main(String[] args) {
-		
-		int[] array = {5, 7, 2, 4, 5, 10};
+
+		int[] array = { 5, 7, 2, 4, 5, 10 };
 		BubbleSort bubbleSort = new BubbleSort();
 		bubbleSort.sort(array);
 		System.out.println(Arrays.toString(array));
-		
+
 		BubbleSort randomArray = new BubbleSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));
 	}
