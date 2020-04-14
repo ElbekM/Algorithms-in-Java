@@ -23,18 +23,14 @@ public class CocktailSort extends SortAlgorithm {
 		while (left <= right) {
 			for (int i = left; i < right; ++i) {
 				if (array[i] > array[i + 1]) {
-					int tmp = array[i];
-					array[i] = array[i + 1];
-					array[i + 1] = tmp;
+					swap(array, i, i + 1);
 				}
 			}
 			right--;
 
 			for (int j = right; j > left; j--) {
 				if (array[j] < array[j - 1]) {
-					int tmp = array[j];
-					array[j] = array[j - 1];
-					array[j - 1] = tmp;
+					swap(array, j, j - 1);
 				}
 			}
 			left++;
@@ -46,8 +42,8 @@ public class CocktailSort extends SortAlgorithm {
 	public static void main(String[] args) {
 
 		int[] array = { 5, 7, 2, 4, 5, 10 };
-		CocktailSort shakeSort = new CocktailSort();
-		shakeSort.sort(array);
+		CocktailSort cocktailSort = new CocktailSort();
+		cocktailSort.sort(array);
 		System.out.println(Arrays.toString(array));
 
 		CocktailSort randomArray = new CocktailSort();

@@ -1,7 +1,5 @@
 package Algorithms.SortingAlgorithms;
 
-import java.util.Arrays;
-
 /**
  * Insertion Sort
  * 
@@ -49,7 +47,7 @@ public class InsertSort extends SortAlgorithm {
 		int[] array = { 5, 7, 2, 4, 5, 10 };
 		InsertSort insertSort = new InsertSort();
 		insertSort.sort(array);
-		System.out.println(Arrays.toString(array));
+		insertSort.print(array);
 
 		InsertSort randomArray = new InsertSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));
