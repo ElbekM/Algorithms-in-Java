@@ -1,7 +1,5 @@
 package Algorithms.SortingAlgorithms;
 
-import java.util.Arrays;
-
 /**
  * Shell Sort
  * 
@@ -49,7 +47,7 @@ public class ShellSort extends SortAlgorithm {
 		int[] array = { 5, 7, 2, 4, 5, 10 };
 		ShellSort shellSort = new ShellSort();
 		shellSort.sort(array);
-		System.out.println(Arrays.toString(array));
+		shellSort.print(array);
 
 		ShellSort randomArray = new ShellSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));

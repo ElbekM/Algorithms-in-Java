@@ -1,7 +1,5 @@
 package Algorithms.SortingAlgorithms;
 
-import java.util.Arrays;
-
 /**
  * Selection Sort
  * 
@@ -25,9 +23,7 @@ public class SelectionSort extends SortAlgorithm {
 					minIndex = j;
 				}
 			}
-			int tmp = array[i];
-			array[i] = array[minIndex];
-			array[minIndex] = tmp;
+			swap(array, i, minIndex);
 		}
 		return array;
 	}
@@ -38,7 +34,7 @@ public class SelectionSort extends SortAlgorithm {
 		int[] array = { 5, 7, 2, 4, 5, 10 };
 		SelectionSort selectionSort = new SelectionSort();
 		selectionSort.sort(array);
-		System.out.println(Arrays.toString(array));
+		selectionSort.print(array);
 
 		SelectionSort randomArray = new SelectionSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 100000));

@@ -1,7 +1,5 @@
 package Algorithms.SortingAlgorithms;
 
-import java.util.Arrays;
-
 /**
  * Merge Sort
  * 
@@ -52,7 +50,7 @@ public class MergeSort extends SortAlgorithm {
 		int[] array = { 3, 2, 3, 5, 10, 8, -5, 5 };
 		MergeSort mergeSort = new MergeSort();
 		mergeSort.sort(array);
-		System.out.println(Arrays.toString(array));
+		mergeSort.print(array);
 
 		MergeSort randomArray = new MergeSort();
 		randomArray.displayTime(randomArray.generateRandomNumbers(100000, 1000000));
