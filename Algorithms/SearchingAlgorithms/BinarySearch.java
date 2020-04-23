@@ -1,11 +1,12 @@
 package Algorithms.SearchingAlgorithms;
 
 /**
- * Binary searching x in arr[].
- * If x is present then return its index,
+ * Binary Search
+ * 
+ * Searching x in arr[]. If x is present then return its index, 
  * otherwise return -1.
  * 
- * @author Elbek M
+ * Complexity: O(log N)
  */
 
 public class BinarySearch {
@@ -44,6 +45,7 @@ public class BinarySearch {
 
 	// Driver Programm
 	public static void main(String[] args) {
+		
 		int[] array = { 2, 3, 4, 10, 40 };
 		int find = 3;
 		System.out.println(recSearch(array, find, 0, array.length - 1));

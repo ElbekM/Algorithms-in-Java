@@ -1,11 +1,13 @@
 package Algorithms.SearchingAlgorithms;
 
 /**
+ * Linear search
+ * 
  * Linear searching x in arr[]. 
  * If x is present then return its index,
  * otherwise return -1.
  * 
- * @author Elbek M
+ * Complexity: O(N)
  */
 
 public class LinearSearch {
@@ -21,6 +23,7 @@ public class LinearSearch {
 
 	// Driver Programm
 	public static void main(String[] args) {
+		
 		int[] array = { 3, 2, 8, 10, 9, 4, 5 };
 		int find = 5;
 		System.out.println(search(array, find));

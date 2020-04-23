@@ -1,21 +1,24 @@
 package Algorithms.DataStructures.Trees;
 
 /**
- * Binary Tree
+ * Binary Search Tree
  * 
+ * The Binary Search Tree is an ordered table of numbers. Does not permit
+ * duplicate keys. This implementation is for an unbalanced BST.
+ * 
+ * Complexity: find O(log N), put O(log N), delete O(log N)
  */
 
-//TODO optimizations
 public class BinaryTree {
 
 	private Node root;
 
-	public Node find(int value) {
+	public Node find(int key) {
 		Node currentNode = root;
 		while (currentNode != null) {
-			if (value > currentNode.value) {
+			if (key > currentNode.value) {
 				currentNode = currentNode.rightNode;
-			} else if (value < currentNode.value) {
+			} else if (key < currentNode.value) {
 				currentNode = currentNode.leftNode;
 			} else {
 				return currentNode;
@@ -24,36 +27,34 @@ public class BinaryTree {
 		return null;
 	}
 
-	public void insert(int value) {
+	public void put(int value) {
 		Node newNode = new Node(value);
 		if (root == null)
 			root = newNode;
 		else {
 			Node currentNode = root;
-			Node parent;
 			while (currentNode.value != newNode.value) {
-				parent = currentNode;
 				if (value > currentNode.value) {
+					if (currentNode.rightNode == null) {
+						currentNode.rightNode = newNode;
+						return;
+					}
 					currentNode = currentNode.rightNode;
-					if (currentNode == null) {
-						parent.rightNode = newNode;
-						return;
-					}
 				} else {
-					currentNode = currentNode.leftNode;
-					if (currentNode == null) {
-						parent.leftNode = newNode;
+					if (currentNode.leftNode == null) {
+						currentNode.leftNode = newNode;
 						return;
 					}
+					currentNode = currentNode.leftNode;
 				}
 			}
 		}
 	}
 
-	public Node delete(int value) {
+	public boolean delete(int value) {
 		Node currentNode = root;
 		Node parent = root;
-		// find delete value in tree
+		// Find delete value in tree
 		while (currentNode.value != value) {
 			parent = currentNode;
 			if (value < currentNode.value) {
@@ -62,82 +63,63 @@ public class BinaryTree {
 				currentNode = currentNode.rightNode;
 			}
 			if (currentNode == null) {
-				return null;
+				return false;
 			}
 		}
-		// delete node without successers
+		// Delete node without successors
 		if (currentNode.leftNode == null && currentNode.rightNode == null) {
-			if (currentNode == root) {
-				root = null;
-			} else if (parent.leftNode == currentNode) {
-				parent.leftNode = null;
-			} else {
-				parent.rightNode = null;
-			}
-			
-		} 
-		// delete node with 1 successer
+			redirectNode(currentNode, null, parent);
+		}
+		// Delete node with 1 successor
 		else if (currentNode.rightNode == null) {
-			if (currentNode == root) {
-				root = currentNode.leftNode;
-			} else if (parent.leftNode == currentNode) {
-				parent.leftNode = currentNode.leftNode;
-			} else {
-				parent.rightNode = currentNode.leftNode;
-			}
+			redirectNode(currentNode, currentNode.leftNode, parent);
 		} else if (currentNode.leftNode == null) {
-			if (currentNode == root) {
-				root = currentNode.rightNode;
-			} else if (parent.leftNode == currentNode) {
-				parent.leftNode = currentNode.rightNode;
-			} else {
-				parent.rightNode = currentNode.rightNode;
-			}
-		} 
-		// delete node with successers
+			redirectNode(currentNode, currentNode.rightNode, parent);
+		}
+		// Delete node with successors
 		else {
 			Node successor = getSuccessor(currentNode);
-			if (currentNode == root) {
-				root = successor;
-			} else if (parent.leftNode == currentNode) {
-				parent.leftNode = successor;
-			} else {
-				parent.rightNode = successor;
-			}
+			redirectNode(currentNode, successor, parent);
 			successor.leftNode = currentNode.leftNode;
 		}
-
-		return currentNode;
+		return true;
 	}
 
 	public void display() {
-		preOrderTraversal(root);
+		preOrderTraversal(root, " -- root");
 	}
 
 	private Node getSuccessor(Node delNode) {
 		Node successor = delNode;
 		Node successorParent = delNode;
 		Node currentNode = delNode.rightNode;
-		
 		while (currentNode != null) {
 			successorParent = successor;
 			successor = currentNode;
 			currentNode = currentNode.leftNode;
 		}
-		
 		if (successor != delNode.rightNode) {
 			successorParent.leftNode = successor.rightNode;
 			successor.rightNode = delNode.rightNode;
 		}
-		
 		return successor;
 	}
 
-	private void preOrderTraversal(Node localRoot) {
+	private void redirectNode(Node currentNode, Node newNode, Node parent) {
+		if (currentNode == root) {
+			root = newNode;
+		} else if (parent.leftNode == currentNode) {
+			parent.leftNode = newNode;
+		} else {
+			parent.rightNode = newNode;
+		}
+	}
+
+	private void preOrderTraversal(Node localRoot, String side) {
 		if (localRoot != null) {
-			System.out.println(localRoot);
-			preOrderTraversal(localRoot.leftNode);
-			preOrderTraversal(localRoot.rightNode);
+			System.out.println(localRoot + " " + side);
+			preOrderTraversal(localRoot.leftNode, " -- left");
+			preOrderTraversal(localRoot.rightNode, " -- right");
 		}
 	}
 
@@ -146,22 +128,21 @@ public class BinaryTree {
 
 		BinaryTree binaryTree = new BinaryTree();
 
-		binaryTree.insert(5);
-		binaryTree.insert(2);
-		binaryTree.insert(1);
-		binaryTree.insert(3);
-		binaryTree.insert(10);
-		binaryTree.insert(20);
-		binaryTree.insert(30);
-		binaryTree.insert(11);
-		binaryTree.insert(29);
-		binaryTree.insert(35);
-		binaryTree.insert(25);
-		binaryTree.insert(26);
+		binaryTree.put(5);
+		binaryTree.put(2);
+		binaryTree.put(1);
+		binaryTree.put(3);
+		binaryTree.put(10);
+		binaryTree.put(20);
+		binaryTree.put(30);
+		binaryTree.put(11);
+		binaryTree.put(29);
+		binaryTree.put(35);
+		binaryTree.put(25);
+		binaryTree.put(26);
 
 		binaryTree.delete(20);
 
 		binaryTree.display();
 	}
-
 }
