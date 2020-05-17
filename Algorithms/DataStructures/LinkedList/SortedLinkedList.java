@@ -1,12 +1,17 @@
 package Algorithms.DataStructures.LinkedList;
 
 /**
- * 
- * @author Elbek M
+ * Sorted Linked List
  *
+ * A Sorted Linked List is a sorted data structure consisting of elements of the same type.
+ * Each list item has a pointer to the next item. In this implementation, the sorting
+ * is ascending.
+ *
+ * Complexity: find O(N), insert O(N), delete O(N)
+ * 			   find min O(1), remove min O(1)
  */
 
-public class SortedList {
+public class SortedLinkedList {
 	
 	private Link first;
 	private int size;
@@ -54,22 +59,19 @@ public class SortedList {
 		System.out.println();
 	}
 	
-	
 	//Driver program
 	public static void main(String[] args) {
 
-		SortedList list = new SortedList();
+		SortedLinkedList list = new SortedLinkedList();
 		list.insert(5);
 		list.insert(3);
 		list.insert(1);
 		list.insert(4);
 		list.insert(2);
-		
+
 		list.remove();
 	
 		list.display();
 		System.out.println(list.size());
-
 	}
-
 }

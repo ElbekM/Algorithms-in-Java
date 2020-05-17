@@ -26,7 +26,7 @@ public abstract class SortAlgorithm {
 		}
 		return array;
 	}
-
+	//TODO fix number display 
 	public void displayTime(int[] array) {
 		Long startTime = Calendar.getInstance().getTime().getTime();
 		sort(array);

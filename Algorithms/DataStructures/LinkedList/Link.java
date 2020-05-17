@@ -1,6 +1,7 @@
 package Algorithms.DataStructures.LinkedList;
 
 public class Link {
+
 	private Link next;
 	private Link previous;
 	private int value;

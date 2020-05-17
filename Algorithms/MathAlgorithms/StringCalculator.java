@@ -9,10 +9,10 @@ import java.util.Stack;
 import Algorithms.MathAlgorithms.exception.SuperCalculatorException;
 
 /**
+ * Polish notation algorithm
+ *
  * Calculates a string arithmetic expression in infix notation using the reverse
  * Polish notation algorithm.
- * 
- * @author Elbek M
  */
 
 public class StringCalculator {

@@ -1,19 +1,22 @@
 package Algorithms.DataStructures.Queue;
 
-import Algorithms.DataStructures.LinkedList.SortedList;
+import Algorithms.DataStructures.LinkedList.SortedLinkedList;
 
 /**
- * 
+ * Priority Queue (List-based implementation)
+ *
+ *
+ *
  * @author Elbek M
  *
  */
 
 public class PriorityListQueue {
 
-	private SortedList list;
+	private SortedLinkedList list;
 	
 	public PriorityListQueue() {
-		list = new SortedList();
+		list = new SortedLinkedList();
 	}
 	
 	public void insert(int element) {
@@ -31,8 +34,7 @@ public class PriorityListQueue {
 	public void print() {
 		list.display();
 	}
-	
-	
+
 	// Driver program
 	public static void main(String[] args) {
 		

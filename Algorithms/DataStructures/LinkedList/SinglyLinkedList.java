@@ -1,11 +1,14 @@
 package Algorithms.DataStructures.LinkedList;
 
 /**
- * 
- * @author Elbek M
+ * Singly Linked List
  *
+ * A Singly Linked List is a data structure consisting of elements of the same type.
+ * Each list item has a pointer to the next item.
+ *
+ * Complexity: find O(N), insert O(N), delete O(N), put/remove at head O(1)
  */
-//TODO add exeptions and unit tests
+
 public class SinglyLinkedList {
 
 	private Link first;
@@ -92,7 +95,6 @@ public class SinglyLinkedList {
 		}
 		System.out.println();
 	}
-	
 	
 	//Driver program
 	public static void main(String[] args) {

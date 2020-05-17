@@ -1,8 +1,7 @@
 package Algorithms.DataStructures.Queue;
 
 /**
- * 
- * @author Elbek M
+ * Deque
  *
  */
 

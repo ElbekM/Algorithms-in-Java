@@ -1,11 +1,14 @@
 package Algorithms.DataStructures.LinkedList;
 
 /**
- * 
- * @author Elbek M
+ * Doubly Linked List
  *
+ * A Doubly Linked List is a data structure consisting of elements of the same type.
+ * Each list item has a pointer to the next and previous item.
+ *
+ * Complexity: find O(N), insert O(N), delete O(N), put/remove at head/tail O(1)
  */
-//TODO add exeptions and unit tests
+
 public class DoublyLinkedList {
 	
 	private Link first;
@@ -13,14 +16,14 @@ public class DoublyLinkedList {
 	private int size;
 	
 	public void add(int element) {
-		Link newlink = new Link(element);
+		Link newLink = new Link(element);
 		if (isEmpty()) {
-			first = newlink;
+			first = newLink;
 		} else {
-			last.setNext(newlink);
-			newlink.setPrevious(last);
+			last.setNext(newLink);
+			newLink.setPrevious(last);
 		}
-		last = newlink;
+		last = newLink;
 		size++;
 	}
 	
@@ -81,7 +84,7 @@ public class DoublyLinkedList {
             if (current != last) {
                 current = current.getNext();
             } else {
-                throw new RuntimeException("The element to be deleted does not exist!");
+            	throw new RuntimeException("The element to be deleted does not exist!");
             }
 		}
 		if (current == first) {
@@ -134,8 +137,7 @@ public class DoublyLinkedList {
 		}
 		System.out.println();
 	}
-	
-	
+
 	//Driver program
 	public static void main(String[] args) throws InterruptedException {
 			
@@ -144,13 +146,12 @@ public class DoublyLinkedList {
 		list.add(3);
 		list.add(8);
 		list.add(4);
-
-		//list.delete(0);
 		
 		list.insert(150, 0);
 		list.insert(55, 2);
 		list.insert(123, list.size);
-		//list.deleteElement(150);
+		list.deleteElement(0);
+
 		list.display();
 	}
 }

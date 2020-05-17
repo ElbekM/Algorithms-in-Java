@@ -2,10 +2,6 @@ package Algorithms.MathAlgorithms;
 
 import java.util.Scanner;
 
-/**
- * 
- * @author Elbek M
- */
 //TODO code without recursion
 public class Gcd {
 

@@ -2,11 +2,6 @@ package Algorithms.MathAlgorithms;
 
 import java.util.Scanner;
 
-/**
- * 
- * @author Elbek M
- */
-
 public class FibNumbers {
 
 	public static int fib(int n) {
